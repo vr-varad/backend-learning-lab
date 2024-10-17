@@ -13,14 +13,6 @@ Welcome to the **Backend Learning Lab**! This repository is a collection of proj
 
 Backend development is the foundation of many modern applications. This repository aims to demonstrate different backend concepts through practical projects. Follow along to see my progress as I learn, experiment, and build backend solutions.
 
-## Projects
-
-| Project Name      | Description                                | Technologies                   |
-|-------------------|--------------------------------------------|--------------------------------|
-
-
-## Technologies
-
 
 ## Learning Objectives
 
