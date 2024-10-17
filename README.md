@@ -4,9 +4,7 @@ Welcome to the **Backend Learning Lab**! This repository is a collection of proj
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Projects](#projects)
-- [Technologies](#technologies)
+- [Introduction](#introduction
 - [Learning Objectives](#learning-objectives)
 
 ## Introduction
