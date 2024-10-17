@@ -1,5 +1,6 @@
 const asyncWrapper = require("../middleware/async");
 const Tasks = require("../models/tasks.model");
+const { NotFoundError } = require("../error/custom-error");
 
 const getAllTasks = asyncWrapper(async (req, res) => {
   const tasks = await Tasks.find({});
@@ -14,18 +15,18 @@ const createTasks = asyncWrapper(async (req, res) => {
   res.status(201).json({ task });
 });
 
-const getTaskById = asyncWrapper(async (req, res) => {
+const getTaskById = asyncWrapper(async (req, res, next) => {
   const { id: taskId } = req.params;
   const task = await Tasks.findOne({
     _id: taskId,
   });
   if (!task) {
-    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
+    return next(NotFoundError(`Task with Id ${taskId} Not Found`));
   }
   res.status(200).json({ task });
 });
 
-const updateTasks = asyncWrapper(async (req, res) => {
+const updateTasks = asyncWrapper(async (req, res, next) => {
   const { id: taskId } = req.params;
   const task = await Tasks.findOneAndUpdate(
     {
@@ -43,16 +44,16 @@ const updateTasks = asyncWrapper(async (req, res) => {
     }
   );
   if (!task) {
-    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
+    return next(NotFoundError(`Task with Id ${taskId} Not Found`));
   }
   res.status(200).json({ task });
 });
 
-const deleteTasks = asyncWrapper(async (req, res) => {
+const deleteTasks = asyncWrapper(async (req, res, next) => {
   const { id: taskId } = req.params;
   const task = await Tasks.findByIdAndDelete(taskId);
   if (!task) {
-    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
+    return next(NotFoundError(`Task with Id ${taskId} Not Found`));
   }
   res.status(200).json({ task });
 });
