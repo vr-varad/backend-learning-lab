@@ -1,78 +1,61 @@
+const asyncWrapper = require("../middleware/async");
 const Tasks = require("../models/tasks.model");
 
-const getAllTasks = async (req, res) => {
-  try {
-    const tasks = await Tasks.find({});
-    res.status(200).json({ tasks });
-  } catch (error) {
-    res.status(500).json({
-      msg: error,
-    });
-  }
-};
+const getAllTasks = asyncWrapper(async (req, res) => {
+  const tasks = await Tasks.find({});
+  res.status(200).json({
+    tasks,
+    nTasks: tasks.length,
+  });
+});
 
-const createTasks = async (req, res) => {
-  try {
-    const task = await Tasks.create(req.body);
-    res.status(201).json({ task });
-  } catch (error) {
-    res.status(500).json({ msg: error });
-  }
-};
+const createTasks = asyncWrapper(async (req, res) => {
+  const task = await Tasks.create(req.body);
+  res.status(201).json({ task });
+});
 
-const getTaskById = async (req, res) => {
-  try {
-    const { id: taskId } = req.params;
-    const task = await Tasks.findOne({
+const getTaskById = asyncWrapper(async (req, res) => {
+  const { id: taskId } = req.params;
+  const task = await Tasks.findOne({
+    _id: taskId,
+  });
+  if (!task) {
+    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
+  }
+  res.status(200).json({ task });
+});
+
+const updateTasks = asyncWrapper(async (req, res) => {
+  const { id: taskId } = req.params;
+  const task = await Tasks.findOneAndUpdate(
+    {
       _id: taskId,
-    });
-    if (!task) {
-      return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
-    }
-    res.status(200).json({ task });
-  } catch (error) {
-    res.status(200).json({ msg: error });
-  }
-};
-
-const updateTasks = async (req, res) => {
-  try {
-    const { id: taskId } = req.params;
-    const task = await Tasks.findOneAndUpdate(
-      {
-        _id: taskId,
+    },
+    {
+      $set: {
+        name: req.body.name,
+        completed: req.body.completed,
       },
-      {
-        $set: {
-          name: req.body.name,
-          completed: req.body.completed,
-        },
-      },
-      {
-        new: true,
-      }
-    );
-    if (!task) {
-      return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
+    },
+    {
+      new: true,
+      runValidators: true,
     }
-    res.status(200).json({ task });
-  } catch (error) {
-    res.status(200).json({ msg: error });
+  );
+  if (!task) {
+    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
   }
-};
+  res.status(200).json({ task });
+});
 
-const deleteTasks = async (req, res) => {
-  try {
-    const { id: taskId } = req.params;
-    const task = await Tasks.findByIdAndDelete(taskId);
-    if (!task) {
-      return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
-    }
-    res.status(200).json({ task });
-  } catch (error) {
-    res.status(200).json({ msg: error });
+const deleteTasks = asyncWrapper(async (req, res) => {
+  const { id: taskId } = req.params;
+  const task = await Tasks.findByIdAndDelete(taskId);
+  if (!task) {
+    return res.status(404).json({ msg: `Task with Id ${taskId} Not Found` });
   }
-};
+  res.status(200).json({ task });
+});
 
 module.exports = {
   getAllTasks,
