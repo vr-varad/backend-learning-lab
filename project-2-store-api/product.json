@@ -1,0 +1,131 @@
+[
+  {
+    "name": "accent chair",
+    "price": 25,
+    "company": "comp1",
+    "rating": 4
+  },
+  {
+    "name": "albany sectional",
+    "price": 109,
+    "company": "comp2",
+    "rating": 5
+  },
+  {
+    "name": "albany table",
+    "price": 309,
+    "company": "comp2",
+    "rating": 4.9
+  },
+  {
+    "name": "armchair",
+    "price": 125,
+    "company": "comp1",
+    "rating": 4.8
+  },
+  {
+    "name": "bar stool",
+    "price": 40,
+    "company": "comp2",
+    "rating": 4.6
+  },
+  {
+    "name": "dining table",
+    "price": 42,
+    "company": "comp3",
+    "rating": 4.55
+  },
+  {
+    "name": "emperor bed",
+    "price": 23,
+    "company": "comp3"
+  },
+  {
+    "name": "entertainment center",
+    "price": 59,
+    "featured": true,
+    "company": "comp4"
+  },
+  {
+    "name": "high-back bench",
+    "price": 39,
+    "featured": true,
+    "company": "comp3"
+  },
+
+  {
+    "name": "leather sofa",
+    "price": 99,
+    "company": "comp4"
+  },
+  {
+    "name": "modern bookshelf",
+    "price": 31,
+    "featured": true,
+    "company": "comp4"
+  },
+  {
+    "name": "modern poster",
+    "price": 30,
+    "company": "comp2"
+  },
+  {
+    "name": "shelf",
+    "price": 30,
+    "company": "comp3"
+  },
+  {
+    "name": "simple chair",
+    "price": 109,
+    "company": "comp2"
+  },
+  {
+    "name": "sofa set",
+    "price": 129,
+    "company": "comp1"
+  },
+  {
+    "name": "suede armchair",
+    "price": 15,
+    "company": "comp4"
+  },
+  {
+    "name": "utopia sofa",
+    "price": 79,
+    "featured": true,
+    "company": "comp2"
+  },
+  {
+    "name": "vase table",
+    "price": 120,
+    "featured": true,
+    "company": "comp1"
+  },
+  {
+    "name": "wooden bed",
+    "price": 25,
+    "company": "comp3"
+  },
+  {
+    "name": "wooden desk",
+    "price": 15,
+    "company": "comp3"
+  },
+  {
+    "name": "wooden desk",
+    "price": 40,
+    "company": "comp3"
+  },
+  {
+    "name": "wooden table",
+    "price": 23,
+    "featured": true,
+    "company": "comp4"
+  },
+  {
+    "name": "a first wooden table",
+    "price": 23,
+    "featured": true,
+    "company": "comp4"
+  }
+]

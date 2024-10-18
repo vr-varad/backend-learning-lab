@@ -1,7 +1,9 @@
+require("express-async-errors");
 const express = require("express");
-const errorHandlerMiddleware = require("./middlewares/errorHandler");
+const { errorHandlerMiddleware } = require("./middlewares/errorHandler");
 const notFoundMiddlware = require("./middlewares/notFound");
 const connectDB = require("./db/connect");
+const productsRouter = require("./routes/products.routes");
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   return res.send("Store API");
 });
+
+app.use("/api/v1/products", productsRouter);
 
 app.use(notFoundMiddlware);
 app.use(errorHandlerMiddleware);
