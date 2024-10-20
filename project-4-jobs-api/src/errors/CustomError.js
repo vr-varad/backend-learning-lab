@@ -25,9 +25,16 @@ class UnauthenticatedError extends CustomAPIError {
   }
 }
 
+class ConflictError extends CustomAPIError {
+  constructor(message) {
+    super(message, StatusCodes.CONFLICT);
+  }
+}
+
 module.exports = {
   CustomAPIError,
   NotFoundError,
   BadRequestError,
   UnauthenticatedError,
+  ConflictError,
 };

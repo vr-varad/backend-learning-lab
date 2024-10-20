@@ -7,6 +7,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       msg: err.message,
     });
   }
+  console.log(err)
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     msg: "Something went Wrong!!",
   });
