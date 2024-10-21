@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Socket Client | Varad Gupta</title>
+  </head>
+  <body>
+    <output id="message"></output>
+    <script>
+      const messages = document.getElementById("message");
+      const socket = new WebSocket("ws://localhost:3000");
+      socket.onopen = (event) => console.log("Connected to the WS")
+      socket.onmessage = (msg) => console.log("I got a message", msg);
+      socket.onerror = (error) =>
+        console.log(`Web Socket Error : ${error.message || error}`);
+      socket.onclose = (event) => console.log("Disconnected from the WS");
+    </script>
+  </body>
+</html>
