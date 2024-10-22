@@ -10,8 +10,26 @@
     <script>
       const messages = document.getElementById("message");
       const socket = new WebSocket("ws://localhost:3000");
-      socket.onopen = (event) => console.log("Connected to the WS")
-      socket.onmessage = (msg) => console.log("I got a message", msg);
+      socket.onopen = (event) => {
+        console.log("Connected to the WS");
+        const id = Math.round(Math.random() * 100);
+        const data = JSON.stringify({
+          id,
+          name: "Varad Gupta",
+          age: 22,
+          hobbies: ["coding", "playing cricket"],
+          address: {
+            building: "H4/305",
+            city: "roha",
+            state: "maharashtra",
+            country: "india",
+          },
+        });
+        socket.send(data);
+      };
+      socket.onmessage = (msg) => {
+        messages.innerHTML += `<br/>${msg.data}<br/>`;
+      };
       socket.onerror = (error) =>
         console.log(`Web Socket Error : ${error.message || error}`);
       socket.onclose = (event) => console.log("Disconnected from the WS");
