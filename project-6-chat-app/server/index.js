@@ -1,19 +1,35 @@
 import { Server } from "socket.io";
-import { createServer } from "http";
+import express from "express";
 
-const httpServer = createServer();
+const app = express();
 
-const io = new Server(httpServer, {
+const expressServer = app.listen(3000, () => {
+  console.log("Server Running At port 3000");
+});
+
+const io = new Server(expressServer, {
   cors: {
     origin: "*",
   },
 });
 
 io.on("connection", (socket) => {
+  socket.emit("message", "Welcome To the chat App");
+  socket.broadcast.emit(
+    "message",
+    `User with userId ${socket.id.substring(0, 5)} connected`
+  );
   socket.on("message", (data) => {
-    console.log(data);
-    io.emit("message", `${socket.id}: Message Recieved at ${new Date()}`);
+    io.emit("message", `${socket.id.substring(0, 5)}: ${data}`);
+  });
+  socket.on("disconnect", () => {
+    socket.broadcast.emit(
+      "message",
+      `User with userId ${socket.id.substring(0, 5)} disconnected`
+    );
+  });
+
+  socket.on("activity", (name) => {
+    socket.broadcast.emit("activity", name);
   });
 });
-
-httpServer.listen(3000);
