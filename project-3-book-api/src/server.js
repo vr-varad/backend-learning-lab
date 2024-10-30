@@ -1,4 +1,3 @@
-const express = require("express");
 require("express-async-errors");
 
 const cluster = require("cluster");
