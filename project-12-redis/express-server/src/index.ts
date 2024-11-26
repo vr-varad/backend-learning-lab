@@ -6,6 +6,7 @@ const client = createClient();
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
+    console.log('Hello World');
     return res.status(200).json({ message: 'Hello World' }) as any;
 })
 
